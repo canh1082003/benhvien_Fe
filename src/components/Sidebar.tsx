@@ -4,8 +4,7 @@ import {
   Package, Archive, Grid, Building2, Factory, Truck, Settings
 } from 'lucide-react';
 
-// server origin for admin link and hints; override with VITE_API_ORIGIN
-const API_ORIGIN = import.meta.env.VITE_API_ORIGIN || 'http://localhost:8080';
+
 
 interface NavItem {
   to?: string;

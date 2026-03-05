@@ -1,7 +1,7 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { Plus, LogOut } from 'lucide-react';
-import { Link } from 'react-router-dom';
+
 import { useAuth } from './AuthContext';
 
 const PAGE_TITLES: Record<string, string> = {

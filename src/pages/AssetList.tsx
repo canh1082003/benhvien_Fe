@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter, RefreshCw, ChevronLeft, ChevronRight, MoreHorizontal, Wrench, AlertOctagon, Clock, Plus } from 'lucide-react';
+import { Search, RefreshCw, ChevronLeft, ChevronRight, Wrench, AlertOctagon, Clock, Plus } from 'lucide-react';
+
 import { assetsApi, departmentsApi, categoriesApi, type AssetFilters } from '../api';
 import type { Asset, AssetCategory, Department, KPI } from '../types';
 import AssetModal from '../components/AssetModal';

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Edit, Trash2, RefreshCw } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
+import { ArrowLeft, Edit, RefreshCw } from 'lucide-react';
+
 import { assetsApi } from '../api';
 import type { Asset } from '../types';
 
@@ -36,7 +37,6 @@ function BadgeFromInfo({ info }: { info?: { status: string; text: string; badge:
 
 export default function AssetDetail() {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const [asset, setAsset] = useState<Asset | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');

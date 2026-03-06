@@ -29,7 +29,7 @@ export default function AdminDashboard() {
     const fetchKPI = async () => {
       try {
         const token = localStorage.getItem('access_token');
-        const res = await api.get('/api/assets/kpi/', {
+        const res = await api.get('/assets/kpi/', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setKpi(res.data);

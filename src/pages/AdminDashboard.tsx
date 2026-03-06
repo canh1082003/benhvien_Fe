@@ -8,6 +8,7 @@ import {
 import { 
   Activity, AlertTriangle, CheckCircle, Clock, Package, Users 
 } from 'lucide-react';
+import { api } from '../api';
 
 interface KPI {
   total: number;
@@ -30,7 +31,7 @@ export default function AdminDashboard() {
     const fetchKPI = async () => {
       try {
         const token = localStorage.getItem('access_token');
-        const res = await axios.get('/api/assets/kpi/', {
+        const res = await api.get('/api/assets/kpi/', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setKpi(res.data);

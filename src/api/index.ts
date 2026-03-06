@@ -1,11 +1,16 @@
 import axios from 'axios';
 import type { Asset, AssetCategory, Department, KPI, Manufacturer, PaginatedResponse, Vendor } from '../types';
 
-// allow overriding the backend URL via environment variable (VITE_API_BASE_URL)
-// during development the vite server proxies `/api` to the Django instance, so
-// the default is still the relative path. In production you can set the
-// full URL (e.g. "http://localhost:8000/api").
-const apiBase = import.meta.env.VITE_API_BASE_URL || '/api';
+// Detect environment and set API base URL
+// - Local: use relative path (Vite proxy to localhost:8000)
+// - Production: use VITE_API_BASE_URL from environment
+const isProduction = import.meta.env.PROD;
+const apiBase = isProduction 
+  ? (import.meta.env.VITE_API_BASE_URL || 'https://benhvien-be.onrender.com/api')
+  : '/api';
+
+console.log('[API] Environment:', { isProduction, apiBase });
+
 export const api = axios.create({ baseURL: apiBase });
 
 // Request interceptor for JWT

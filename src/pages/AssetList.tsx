@@ -51,7 +51,7 @@ export default function AssetList() {
   }, []);
 
   // base origin for links to server (admin page, troubleshooting hints)
-  const API_ORIGIN = import.meta.env.VITE_API_ORIGIN || 'http://localhost:8080';
+  const API_ORIGIN = import.meta.env.VITE_API_ORIGIN || 'http://localhost:8000';
 
   const [filters, setFilters] = useState<AssetFilters>({});
   const [searchInput, setSearchInput] = useState('');

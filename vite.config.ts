@@ -5,21 +5,22 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
+    // Proxy only works in development
     proxy: {
       "/api": {
-        target: process.env.VITE_API_PROXY_TARGET || "http://127.0.0.1:8080",
+        target: "http://127.0.0.1:8000",
         changeOrigin: true,
       },
       "/admin": {
-        target: process.env.VITE_API_PROXY_TARGET || "http://127.0.0.1:8080",
+        target: "http://127.0.0.1:8000",
         changeOrigin: true,
       },
       "/static": {
-        target: process.env.VITE_API_PROXY_TARGET || "http://127.0.0.1:8080",
+        target: "http://127.0.0.1:8000",
         changeOrigin: true,
       },
       "/media": {
-        target: process.env.VITE_API_PROXY_TARGET || "http://127.0.0.1:8080",
+        target: "http://127.0.0.1:8000",
         changeOrigin: true,
       },
     },

@@ -49,17 +49,50 @@ export default function AssetModal({ onClose, onSuccess }: AssetModalProps) {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    
+    // Validation
+    if (!data.asset_code.trim()) {
+      setError('Mã thiết bị không được để trống');
+      setLoading(false);
+      return;
+    }
+    if (!data.asset_name.trim()) {
+      setError('Tên thiết bị không được để trống');
+      setLoading(false);
+      return;
+    }
+    
     try {
-      await assetsApi.create({
-        ...data,
-        category_id: data.category_id ? Number(data.category_id) : undefined,
-        owner_dept_id: data.owner_dept_id ? Number(data.owner_dept_id) : undefined,
-        manufacturer_id: data.manufacturer_id ? Number(data.manufacturer_id) : undefined,
-        vendor_id: data.vendor_id ? Number(data.vendor_id) : undefined,
-      } as any);
+      const payload = {
+        asset_code: data.asset_code,
+        asset_name: data.asset_name,
+        serial_no: data.serial_no,
+        model_name_manual: data.model_name_manual,
+        current_status: data.current_status,
+        risk_class: data.risk_class,
+        criticality: data.criticality,
+      };
+      
+      // Add optional fields if selected
+      if (data.category_id) {
+        (payload as any).category_id = Number(data.category_id);
+      }
+      if (data.owner_dept_id) {
+        (payload as any).owner_dept_id = Number(data.owner_dept_id);
+      }
+      if (data.manufacturer_id) {
+        (payload as any).manufacturer_id = Number(data.manufacturer_id);
+      }
+      if (data.vendor_id) {
+        (payload as any).vendor_id = Number(data.vendor_id);
+      }
+      
+      console.log('Submitting:', payload);
+      await assetsApi.create(payload);
       onSuccess();
       onClose();
     } catch (err: any) {
+      console.error('Error:', err);
       const detail = err?.response?.data;
       if (detail && typeof detail === 'object') {
         const messages = Object.entries(detail)

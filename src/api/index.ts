@@ -3,12 +3,13 @@ import type { Asset, AssetCategory, Department, KPI, Manufacturer, PaginatedResp
 
 // Detect environment and set API base URL
 // - Local dev (localhost): use relative path /api (Vite proxy to localhost:8000)
-// - Production (Vercel): use full URL to Render backend
-const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost';
+// - Production (non-localhost): use full URL to Render backend
+const isLocalhost = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 const apiBase = isLocalhost ? '/api' : 'https://benhvien-be.onrender.com/api';
 
 console.log('[API] Environment:', { 
   hostname: typeof window !== 'undefined' ? window.location.hostname : 'unknown',
+  isLocalhost,
   apiBase 
 });
 

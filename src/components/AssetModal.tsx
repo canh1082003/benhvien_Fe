@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Save, RefreshCw } from 'lucide-react';
 import { assetsApi, departmentsApi, categoriesApi, manufacturersApi, vendorsApi } from '../api';
-import type { Department, AssetCategory, Manufacturer, Vendor } from '../types';
+import type { Department, AssetCategory, Manufacturer, Vendor, AssetStatus } from '../types';
 
 interface AssetModalProps {
   onClose: () => void;
@@ -63,28 +63,28 @@ export default function AssetModal({ onClose, onSuccess }: AssetModalProps) {
     }
     
     try {
-      const payload = {
+      const payload: any = {
         asset_code: data.asset_code,
         asset_name: data.asset_name,
         serial_no: data.serial_no,
         model_name_manual: data.model_name_manual,
-        current_status: data.current_status,
+        current_status: data.current_status as AssetStatus,
         risk_class: data.risk_class,
         criticality: data.criticality,
       };
       
       // Add optional fields if selected
       if (data.category_id) {
-        (payload as any).category_id = Number(data.category_id);
+        payload.category_id = Number(data.category_id);
       }
       if (data.owner_dept_id) {
-        (payload as any).owner_dept_id = Number(data.owner_dept_id);
+        payload.owner_dept_id = Number(data.owner_dept_id);
       }
       if (data.manufacturer_id) {
-        (payload as any).manufacturer_id = Number(data.manufacturer_id);
+        payload.manufacturer_id = Number(data.manufacturer_id);
       }
       if (data.vendor_id) {
-        (payload as any).vendor_id = Number(data.vendor_id);
+        payload.vendor_id = Number(data.vendor_id);
       }
       
       console.log('Submitting:', payload);

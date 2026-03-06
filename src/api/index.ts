@@ -2,14 +2,15 @@ import axios from 'axios';
 import type { Asset, AssetCategory, Department, KPI, Manufacturer, PaginatedResponse, Vendor } from '../types';
 
 // Detect environment and set API base URL
-// - Local: use relative path (Vite proxy to localhost:8000)
-// - Production: use VITE_API_BASE_URL from environment
-const isProduction = import.meta.env.PROD;
-const apiBase = isProduction 
-  ? (import.meta.env.VITE_API_BASE_URL || 'https://benhvien-be.onrender.com/api')
-  : '/api';
+// - Local dev (localhost): use relative path /api (Vite proxy to localhost:8000)
+// - Production (Vercel): use full URL to Render backend
+const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost';
+const apiBase = isLocalhost ? '/api' : 'https://benhvien-be.onrender.com/api';
 
-console.log('[API] Environment:', { isProduction, apiBase });
+console.log('[API] Environment:', { 
+  hostname: typeof window !== 'undefined' ? window.location.hostname : 'unknown',
+  apiBase 
+});
 
 export const api = axios.create({ baseURL: apiBase });
 

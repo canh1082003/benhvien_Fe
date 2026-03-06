@@ -5,7 +5,7 @@ import type { Asset, AssetCategory, Department, KPI, Manufacturer, PaginatedResp
 // - Local dev (localhost): use relative path /api (Vite proxy to localhost:8000)
 // - Production (non-localhost): use full URL to Render backend
 const isLocalhost = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-const apiBase = isLocalhost ? '/api' : 'https://benhvien-be.onrender.com/api';
+const apiBase = isLocalhost ? '/api' : 'http://127.0.0.1:8000/';
 
 console.log('[API] Environment:', { 
   hostname: typeof window !== 'undefined' ? window.location.hostname : 'unknown',

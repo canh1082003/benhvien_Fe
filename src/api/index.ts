@@ -7,11 +7,6 @@ import type { Asset, AssetCategory, Department, KPI, Manufacturer, PaginatedResp
 const isLocalhost = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 const apiBase = isLocalhost ? '/api' : 'https://benhvien.imagentu.cloud/api';
 
-console.log('[API] Environment:', { 
-  hostname: typeof window !== 'undefined' ? window.location.hostname : 'unknown',
-  isLocalhost,
-  apiBase 
-});
 
 export const api = axios.create({ baseURL: apiBase });
 
